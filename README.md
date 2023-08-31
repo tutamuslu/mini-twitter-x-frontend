@@ -93,17 +93,20 @@ React'ın güzelliklerinden biri de bileşen tabanlı yapısıdır. İşte bazı
 
 **Tweet İşlemleri:**
 
-| Metod  | URL                            | Tanım           |
-| ------ | ------------------------------ | --------------- |
-| POST   | `${URL}/tweet`                 | Yeni Tweet      |
-| POST   | `${URL}/tweet/retweet/id`      | Retweet         |
-| PUT    | `${URL}/tweet/id`              | Tweet Düzenle   |
-| DELETE | `${URL}/tweet/delete/id`       | Tweet Sil       |
-| POST   | `${URL}/tweet/like/id`         | Beğen           |
-| POST   | `${URL}/tweet/unlike/id`       | Beğenme         |
-| POST   | `${URL}/tweet/reply/new/id`    | Yorum Yap       |
-| DELETE | `${URL}/tweet/reply/delete/id` | Yorum Sil       |
-| GET    | `${URL}/tweet/id`              | Tweetleri Getir |
+| Metod  | URL                       | Tanım                 |
+| ------ | ------------------------- | --------------------- |
+| GET    | `${URL}/tweet/`           | Bütün Tweetleri Getir |
+| GET    | `${URL}/tweet/id`         | Bir Tweet Getir       |
+| POST   | `${URL}/tweet`            | Yeni Tweet            |
+| PUT    | `${URL}/tweet/id`         | Tweet Düzenle         |
+| DELETE | `${URL}/tweet/id`         | Tweet Sil             |
+| POST   | `${URL}/tweet/like/id`    | Beğen                 |
+| DELETE | `${URL}/tweet/like/id`    | Beğenme               |
+| POST   | `${URL}/tweet/retweet/id` | Retweet               |
+| POST   | `${URL}/tweet/reply/id`   | Yorum Yap             |
+| DELETE | `${URL}/tweet/reply/id`   | Yorum Sil             |
+
+API için projede ilerledikçe [Mini Twitter X - Mock API Server](https://github.com/Workintech/mini-twitter-x-mock-api-server) adresindeki repoyu kullanabilirsiniz.
 
 ## Tasarım ile Çalışma
 
