@@ -70,15 +70,131 @@
   width: 60%;
 }
 
-.main-center .main-center-top{
+.main-center .main-center-top {
   color: #000;
+  font-family: Segoe UI;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  border-bottom: 1px solid #D8D8D8;
+  height: 3rem;
+}
+
+.user-input-area {
+  display: flex;
+  flex-direction: row;
+  padding: 7px;
+}
+
+.user-input-area img {
+  border-radius: 3.75rem;
+}
+
+.user-input-area input {
+  border: none;
+  height: 4rem;
+  color: var(--Gray-3, #828282);
+  font-family: Segoe UI;
+  font-size: 1.2rem;
+  font-style: normal;
+  line-height: normal;
+}
+
+.tweet-icon-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.tweet-icon-area {
+  margin-left: 60px;
+}
+
+.tweet-icon-area a {
+  margin-left: 10px;
+  text-decoration: none;
+}
+
+.main-center-tweet {
+  padding-bottom: 15px;
+  border-bottom: 1px solid #D8D8D8;
+}
+
+.main-center-tweet button {
+  border-radius: 7.5rem;
+  opacity: 0.4;
+  background: var(#1D9BF0, #1DA1F2);
+  box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.08);
+  width: 100px;
+  margin-right: 30px;
+}
+
+.tweet {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  padding: 10px;
+  border-bottom: 1px solid #D8D8D8;
+}
+
+.tweet .tweet-content {
+  width: 80%;
+  margin-left: 15px;
+}
+
+.tweet-user-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.tweet-user-row .tweet-name {
+  color: #000;
+  font-family: Segoe UI;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.tweet-user-row .tweet-user-time {
+  color: #000;
+  font-family: Segoe UI;
+  font-size: 1.05rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-left: 5px;
+}
+
+.tweet-content-row {
+  color: #000;
+  font-family: Segoe UI;
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.tweet-action-buttons{
+  text-decoration: none;
+  display: flex;
+  justify-content: space-between
+}
+
+.tweet-action-buttons a{
+  text-decoration: none;
+  color: #536471;
 font-family: Segoe UI;
-font-size: 1.5rem;
+font-size: 1rem;
 font-style: normal;
-font-weight: 700;
+font-weight: 400;
 line-height: normal;
-border-bottom: 1px solid #D8D8D8;
-height: 3rem;
+}
+
+.tweet-content-actions a{
+
 }
 
 .main-right {

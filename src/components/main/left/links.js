@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-const MainLeftLinks = () => {
+export const Links = () => {
     return (
         <>
             <Link to={'/#'}> <img src='images/home.svg' alt='home' /> Anasayfa </Link>
@@ -14,5 +14,3 @@ const MainLeftLinks = () => {
         </>
     )
 }
-
-export default MainLeftLinks;

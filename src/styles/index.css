@@ -13,6 +13,16 @@ body, .main{
   justify-content: center;
 }
 
+.row{
+  display: flex;
+  flex-direction: row;
+}
+
+.column{
+  display: flex;
+  flex-direction: column;
+}
+
 .sign-area{
   width: 35rem;
   display: flex;

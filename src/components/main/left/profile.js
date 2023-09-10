@@ -1,5 +1,5 @@
 
-export const MainLeftProfile = () => {
+export const Profile = () => {
     return (
         <>
             <div className='main-left-profile'>

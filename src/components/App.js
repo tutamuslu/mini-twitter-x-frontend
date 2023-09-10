@@ -1,9 +1,10 @@
-import { Link } from 'react-router-dom';
+
 import '../styles/app.css';
 import { useState } from 'react';
 import { Button, Input } from 'reactstrap';
-import MainLeftLinks from './main/main-left-links';
-import { MainLeftProfile } from './main/main-left-profile';
+import { TweetIconArea } from './main/center/tweet-icon-area';
+import MainLeft from './main/left/main-left';
+import Tweet from './main/center/tweet';
 
 function App() {
   const [tweets, setTweets] = useState([]);
@@ -12,14 +13,7 @@ function App() {
 
   return (
     <div className='main main-area'>
-      <div className='main-left'>
-        <div className='main-left-content'>
-          <img src="images/twitter-logo.png" height={25} width={25} alt="logo" />
-          <MainLeftLinks />
-          <Button>Tweet</Button>
-          <MainLeftProfile />
-        </div>
-      </div>
+      <MainLeft />
       <div className='main-center'>
         <div className='main-center-top'>
           Anasayfa
@@ -29,10 +23,16 @@ function App() {
             <img src='images/profile-empty.png' width={50} height={50} alt='profile' />
             <Input type='text' id='tweet' placeholder='Neler Oluyor?' />
           </div>
-          <div className='icon-area'>
-
+          <div className='tweet-icon-row'>
+            <TweetIconArea />
+            <Button>Tweet</Button>
           </div>
+
         </div>
+        <Tweet/>
+        <Tweet/>
+        <Tweet/>
+        <Tweet/>
       </div>
       <div className='main-right'>
         c
