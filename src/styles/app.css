@@ -1,0 +1,87 @@
+.main-area {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 1%;
+}
+
+.main-left {
+  width: 20%;
+  display: flex;
+  justify-content: center;
+}
+
+.main-left-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.875rem;
+  margin-top: 30px;
+}
+
+.main-left-content a {
+  color: #000;
+  font-family: Segoe UI;
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  text-decoration: none;
+}
+
+.main-left-content button {
+  border-radius: 1.71875rem;
+  background: #1D9BF0;
+  color: #FFF;
+  font-family: Segoe UI;
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.main-left-content .main-left-profile {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 15px;
+}
+
+.main-left-content .main-left-profile img {
+  border-radius: 3.125rem;
+}
+
+.main-left-content .profile-name {
+  color: #000;
+  font-family: Segoe UI;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.main-left-content .profile-user {
+  color: #000;
+  font-family: Segoe UI;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.main-center {
+  width: 60%;
+}
+
+.main-center .main-center-top{
+  color: #000;
+font-family: Segoe UI;
+font-size: 1.5rem;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+border-bottom: 1px solid #D8D8D8;
+height: 3rem;
+}
+
+.main-right {
+  width: 20%;
+  background-color: blueviolet;
+}
