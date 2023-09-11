@@ -28,15 +28,25 @@ const SignUp = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(state)
+        const signupInput = {
+            fullName: state.name,
+            userName: state.user,
+            email: state.email,
+            password: state.password,
+            birthDate: state.birth
+        }
         axios
-            .post('API_ENDPOINT_URL', state)
+            .post('http://localhost:9000/profile/register', signupInput)
             .then((response) => {
-                toast('Başarıyla üye oldunuz! Bekleyin yönlendiriliyorsunuz.');
+                if(response.data.success){
+                    toast('Başarıyla üye oldunuz! Bekleyin yönlendiriliyorsunuz.');
                 // mesajı okusun diye azıcık bekletip yönlendirdim.
                 setTimeout(() => {
                     navigate('/');
                 }, 1000);
+                }else{
+                    toast('Hata oluştu :' + response.data.errorMessage);
+                }
             })
             .catch((error) => {
                 toast('Hata oluştu :' + error);

@@ -21,15 +21,19 @@ const SignIn = () => {
     }
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(state)
         axios
-            .post('API_ENDPOINT_URL', state)
+            .post('http://localhost:9000/profile/login', state)
             .then((response) => {
-                toast('Başarıyla üye oldunuz! Bekleyin yönlendiriliyorsunuz.');
+                if(response.data.success){
+                    toast('Başarıyla giriş yaptınız! Bekleyin yönlendiriliyorsunuz.');
                 // mesajı okusun diye azıcık bekletip yönlendirdim.
                 setTimeout(() => {
                     navigate('/');
                 }, 1000);
+                }else{
+                    toast('Hata oluştu :' + response.data.errorMessage);
+                }
+                
             })
             .catch((error) => {
                 toast('Hata oluştu :' + error);
