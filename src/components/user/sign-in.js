@@ -4,9 +4,11 @@ import axios from "axios";
 import { toast } from 'react-toastify';
 import { Link, useNavigate } from 'react-router-dom';
 import '../../styles/sign.css'
+import { useTwitterContext } from "../../context/tweet-context";
 
 const SignIn = () => {
 
+    const { setUser, setToken } = useTwitterContext();
     const navigate = useNavigate();
     const [state, setState] = useState({
         user: '',
@@ -24,7 +26,11 @@ const SignIn = () => {
         axios
             .post('http://localhost:9000/profile/login', state)
             .then((response) => {
+                console.log(response)
                 if(response.data.success){
+                   setToken(response.data.token)
+                   setUser(response.data.user)
+
                     toast('Başarıyla giriş yaptınız! Bekleyin yönlendiriliyorsunuz.');
                 // mesajı okusun diye azıcık bekletip yönlendirdim.
                 setTimeout(() => {

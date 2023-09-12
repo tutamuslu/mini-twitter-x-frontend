@@ -6,7 +6,7 @@ import "./styles/index.css";
 import "react-toastify/dist/ReactToastify.css";
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { ToastContainer } from "react-toastify";
-import { TweetContextProvider } from "./context/tweet-context";
+import { TwitterContextProvider } from "./context/tweet-context";
 import App from './components/App';
 import SignIn from './components/user/sign-in';
 import SignUp from './components/user/sign-up';
@@ -14,13 +14,13 @@ import SignUp from './components/user/sign-up';
 ReactDOM.render(
   <BrowserRouter>
     <ToastContainer />
-    <TweetContextProvider>
+    <TwitterContextProvider>
       <Routes>
         <Route exact path="/" element={<App />} />
         <Route exact path="/signup" element={<SignUp />} />
         <Route exact path="/signin" element={<SignIn />} />
       </Routes>
-    </TweetContextProvider>
+    </TwitterContextProvider>
   </BrowserRouter>
   , document.getElementById("root"));
 

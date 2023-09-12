@@ -39,10 +39,9 @@ const SignUp = () => {
             .post('http://localhost:9000/profile/register', signupInput)
             .then((response) => {
                 if(response.data.success){
-                    toast('Başarıyla üye oldunuz! Bekleyin yönlendiriliyorsunuz.');
-                // mesajı okusun diye azıcık bekletip yönlendirdim.
+                    toast('Üye oldunuz! Giriş yapabilirsiniz!!');
                 setTimeout(() => {
-                    navigate('/');
+                    navigate('/signin');
                 }, 1000);
                 }else{
                     toast('Hata oluştu :' + response.data.errorMessage);

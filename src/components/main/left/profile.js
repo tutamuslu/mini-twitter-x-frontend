@@ -1,12 +1,14 @@
+import { useTwitterContext } from "../../../context/tweet-context"
 
 export const Profile = () => {
+    const { user } = useTwitterContext();
     return (
         <>
             <div className='main-left-profile'>
                 <img src='images/profile-empty.png' width={50} height={50} alt='profile' />
                 <div className='profile-detail'>
-                    <div className='profile-name'>Tuğba</div>
-                    <div className='profile-user'>@tugbaa</div>
+                    <div className='profile-name'>{user?.fullName}</div>
+                    <div className='profile-user'>@{user?.username}</div>
                 </div>
                 <div className='profile-others'>
                     <svg xmlns="http://www.w3.org/2000/svg" width="17" height="4" viewBox="0 0 17 4" fill="none">
