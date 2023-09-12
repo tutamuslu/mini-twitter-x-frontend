@@ -5,9 +5,11 @@ import axios from "axios";
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import '../../styles/sign.css';
+import { useTwitterContext } from "../../context/tweet-context";
 
 const SignUp = () => {
 
+    const { setUser, setToken } = useTwitterContext();
     const navigate = useNavigate();
     const [state, setState] = useState({
         name: '',
@@ -38,14 +40,19 @@ const SignUp = () => {
         axios
             .post('http://localhost:9000/profile/register', signupInput)
             .then((response) => {
-                if(response.data.success){
-                    toast('Üye oldunuz! Giriş yapabilirsiniz!!');
-                setTimeout(() => {
-                    navigate('/signin');
-                }, 1000);
-                }else{
+                console.log(response)
+                if (response.data.success) {
+                    setToken(response.data.token)
+                    setUser(response.data.user)
+                    toast('Başarıyla giriş yaptınız! Bekleyin yönlendiriliyorsunuz.');
+                    // mesajı okusun diye azıcık bekletip yönlendirdim.
+                    setTimeout(() => {
+                        navigate('/');
+                    }, 1000);
+                } else {
                     toast('Hata oluştu :' + response.data.errorMessage);
                 }
+
             })
             .catch((error) => {
                 toast('Hata oluştu :' + error);

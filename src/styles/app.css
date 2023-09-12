@@ -201,3 +201,13 @@ line-height: normal;
   width: 20%;
   background-color: blueviolet;
 }
+
+.tweet-actions{
+  margin-top: 10px;
+}
+
+.tweet-actions a{
+  text-decoration: none;
+  color: #000;
+  margin-left: 7px;
+}
