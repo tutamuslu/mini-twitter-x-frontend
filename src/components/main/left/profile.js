@@ -1,7 +1,25 @@
+import { Button } from "reactstrap";
 import { useTwitterContext } from "../../../context/tweet-context"
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { toast } from 'react-toastify';
 
 export const Profile = () => {
-    const { user } = useTwitterContext();
+    const { user, token, setToken } = useTwitterContext();
+    const navigate = useNavigate();
+
+    const onLogout = () => {
+        axios
+        .post('http://localhost:9000/profile/logout', {}, { headers: { Authorization: "Bearer " + token } })
+        .then(() => {
+          setToken(-1);
+          navigate("/signin");
+        })
+        .catch((error) => {
+          toast('Hata oluştu :' + error);
+        });
+    }
+
     return (
         <>
             <div className='main-left-profile'>
@@ -18,6 +36,7 @@ export const Profile = () => {
                     </svg>
                 </div>
             </div>
+            <Button className="logout-button" onClick={onLogout}>Çıkış</Button>
         </>
     )
 }

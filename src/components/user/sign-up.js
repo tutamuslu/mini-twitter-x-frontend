@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button, Input } from "reactstrap";
 import { DatePicker } from "reactstrap-date-picker";
 import axios from "axios";
@@ -18,7 +18,14 @@ const SignUp = () => {
         password: '',
         password2: '',
         birth: new Date().toISOString()
-    })
+    });
+
+    // eğer giriş yapmışsa anasayfaya gönderelim.
+    useEffect(() => {
+        if(localStorage.getItem("token") !== undefined && localStorage.getItem("token") != -1){
+            navigate("/");
+        }
+    }, []);
 
     const onChange = (e) => {
         const { id, value } = e.target;
@@ -42,12 +49,12 @@ const SignUp = () => {
             .then((response) => {
                 console.log(response)
                 if (response.data.success) {
-                    setToken(response.data.token)
+                    setToken(null)
                     setUser(response.data.user)
-                    toast('Başarıyla giriş yaptınız! Bekleyin yönlendiriliyorsunuz.');
+                    toast('Başarıyla üye oldunuz! Giriş yapabilirsiniz!!');
                     // mesajı okusun diye azıcık bekletip yönlendirdim.
                     setTimeout(() => {
-                        navigate('/');
+                        navigate('/signin');
                     }, 1000);
                 } else {
                     toast('Hata oluştu :' + response.data.errorMessage);

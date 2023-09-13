@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Input } from "reactstrap";
 import axios from "axios";
 import { toast } from 'react-toastify';
@@ -14,6 +14,15 @@ const SignIn = () => {
         user: '',
         password: ''
     })
+
+    // eğer giriş yapmışsa anasayfaya gönderelim.
+    useEffect(() => {
+        console.log(localStorage.getItem("token"))
+        if(localStorage.getItem("token") !== undefined && localStorage.getItem("token") != -1){
+            navigate("/");
+        }
+    }, []);
+
     const onChange = (e) => {
         const { id, value } = e.target;
         setState({

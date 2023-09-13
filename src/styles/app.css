@@ -122,8 +122,7 @@
 
 .main-center-tweet button {
   border-radius: 7.5rem;
-  opacity: 0.4;
-  background: var(#1D9BF0, #1DA1F2);
+  background-color: #1D9BF0;
   box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.08);
   width: 100px;
   margin-right: 30px;

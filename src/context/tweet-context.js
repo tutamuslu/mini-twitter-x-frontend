@@ -6,7 +6,7 @@ const TwitterContext = createContext();
 
 // Context sağlayıcı (provider) bileşeni oluştur
 export function TwitterContextProvider({ children }) {
-  const [token, setToken] = useToken();
+  const [token, setToken] = useToken(-1);
   const [user, setUser] = useUser({
     userId: 0,
     fullName: '',

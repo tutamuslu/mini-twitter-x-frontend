@@ -22,7 +22,7 @@ function App() {
       .then((response) => {
         console.log(response)
         // tweet tarihine göre sıralyalım
-        const sortedTweets = response.data.sort(function(a,b){
+        const sortedTweets = response.data.sort(function (a, b) {
           return new Date(b.tweetDate) - new Date(a.tweetDate);
         });
         setTweets([...sortedTweets])
@@ -30,15 +30,13 @@ function App() {
       })
       .catch((error) => {
         // yetki hatası alındıysa başa dönsün
-        if(error.code === "ERR_NETWORK"){
-          setToken('');
-          navigate('/signin')
+        if (error.response.status === 401) {
+          setToken(-1);
+          navigate('/signin');
         }
         toast('Hata oluştu :' + error);
       });
   }, []);
-
-  console.log(tweets);
 
   const onTweetSend = () => {
 
@@ -53,7 +51,8 @@ function App() {
       .then((response) => {
         if (response.data.success) {
           toast("Tweet eklendi!")
-          setTweets([response.data.tweet, ...tweets])
+          const newArray = [response.data.tweet, ...tweets]
+          setTweets([...newArray])
           setTweet('');
         } else {
           toast("Hata Oluştu : " + response.data.errorMessage);
@@ -66,41 +65,41 @@ function App() {
 
   const onDeleteTweet = (id) => {
     axios.delete('http://localhost:9000/tweet/' + id, { headers: { Authorization: "Bearer " + token } })
-        .then((response) => {
-            if (response.data.success) {
-              const newTweets = tweets?.filter(x => x.id !== id);
-              setTweets([...newTweets])
-                toast("Tweet Silindi!");
-            } else {
-                toast("Hata oluştu : " + response.data.errorMessage);
-            }
-        })
-        .catch((error) => {
-            toast('Hata oluştu :' + error);
-        });
-}
-
-const onTweetUpdate = (id, newValue) => {
-  const input = {
-    userId: user.id,
-    content: newValue,
-    tweetDate: new Date()
-  };
-  axios.put('http://localhost:9000/tweet/' + id, input, { headers: { Authorization: "Bearer " + token } })
       .then((response) => {
-          if (response.data.success) {
-            const copyTweets = [...tweets];
-            copyTweets.find(x => x.id === id).content = newValue;
-            setTweets([...copyTweets])
-              toast("Tweet Güncellendi.!");
-          } else {
-              toast("Hata oluştu : " + response.data.errorMessage);
-          }
+        if (response.data.success) {
+          const newTweets = tweets?.filter(x => x.id !== id);
+          setTweets([...newTweets])
+          toast("Tweet Silindi!");
+        } else {
+          toast("Hata oluştu : " + response.data.errorMessage);
+        }
       })
       .catch((error) => {
-          toast('Hata oluştu :' + error);
+        toast('Hata oluştu :' + error);
       });
-}
+  }
+
+  const onTweetUpdate = (id, newValue) => {
+    const input = {
+      userId: user.id,
+      content: newValue,
+      tweetDate: new Date()
+    };
+    axios.put('http://localhost:9000/tweet/' + id, input, { headers: { Authorization: "Bearer " + token } })
+      .then((response) => {
+        if (response.data.success) {
+          const copyTweets = [...tweets];
+          copyTweets.find(x => x.id === id).content = newValue;
+          setTweets([...copyTweets])
+          toast("Tweet Güncellendi.!");
+        } else {
+          toast("Hata oluştu : " + response.data.errorMessage);
+        }
+      })
+      .catch((error) => {
+        toast('Hata oluştu :' + error);
+      });
+  }
 
   return (
     <div className='main main-area'>
