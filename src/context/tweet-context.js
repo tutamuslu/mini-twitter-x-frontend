@@ -1,6 +1,6 @@
 import React, { createContext, useContext } from 'react';
-import { useToken } from './useToken';
-import { useUser } from './useUser';
+import { useToken } from '../hooks/useToken';
+import { useUser } from '../hooks/useUser';
 
 const TwitterContext = createContext();
 

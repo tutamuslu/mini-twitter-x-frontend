@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { ToastContainer } from "react-toastify";
 import { TwitterContextProvider } from "./context/tweet-context";
-import App from './components/App';
+import App from './App';
 import SignIn from './components/user/sign-in';
 import SignUp from './components/user/sign-up';
 

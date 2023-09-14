@@ -3,7 +3,7 @@ import { Button, Input } from "reactstrap";
 import { DatePicker } from "reactstrap-date-picker";
 import axios from "axios";
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import '../../styles/sign.css';
 import { useTwitterContext } from "../../context/tweet-context";
 
@@ -93,6 +93,9 @@ const SignUp = () => {
                     onChange={(v) => handleChange(v)} />
 
                 <Button id="submit" onClick={handleSubmit}>Üye Ol</Button>
+                <div className="sign-footer">
+                    <Link to={"/signin"}>Giriş Yap</Link>
+                </div>
             </div>
         </div>
     )

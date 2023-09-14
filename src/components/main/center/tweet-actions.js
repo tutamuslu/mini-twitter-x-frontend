@@ -11,7 +11,7 @@ export const TweetActions = (props) => {
     const [showActions, setShowActions] = useState(false);
     const [updateShow, setUpdateShow] = useState(false);
     const [comment, setComment] = useState('');
-    const { tweet, onTweetUpdate, onDeleteTweet, setCommentCount, commentCount, commentsShow, setCommetsShow } = props;
+    const { tweet, tweets, setTweets, setCommentCount, commentCount, commentsShow, setCommetsShow } = props;
     const [updatedValue, setUpdatedValue] = useState(tweet?.content);
 
     const customStyles = {
@@ -48,7 +48,43 @@ export const TweetActions = (props) => {
             });
     }
 
-
+    const onDeleteTweet = (id) => {
+        axios.delete('http://localhost:9000/tweet/' + id, { headers: { Authorization: "Bearer " + token } })
+          .then((response) => {
+            if (response.data.success) {
+              const newTweets = tweets?.filter(x => x.id !== id);
+              setTweets([...newTweets])
+              toast("Tweet Silindi!");
+            } else {
+              toast("Hata oluştu : " + response.data.errorMessage);
+            }
+          })
+          .catch((error) => {
+            toast('Hata oluştu :' + error);
+          });
+      }
+    
+      const onTweetUpdate = (id, newValue) => {
+        const input = {
+          userId: user.id,
+          content: newValue,
+          tweetDate: new Date()
+        };
+        axios.put('http://localhost:9000/tweet/' + id, input, { headers: { Authorization: "Bearer " + token } })
+          .then((response) => {
+            if (response.data.success) {
+              const copyTweets = [...tweets];
+              copyTweets.find(x => x.id === id).content = newValue;
+              setTweets([...copyTweets])
+              toast("Tweet Güncellendi.!");
+            } else {
+              toast("Hata oluştu : " + response.data.errorMessage);
+            }
+          })
+          .catch((error) => {
+            toast('Hata oluştu :' + error);
+          });
+      }
 
     return (
         <>
@@ -78,7 +114,7 @@ export const TweetActions = (props) => {
                     <div>
                         <Input name='comment' id='comment' value={comment} onChange={(e) => { setComment(e.target.value) }} />
                         <Button onClick={onAddComment}>Kaydet</Button>
-                        <button onClick={() => { setCommetsShow(false) }}>close</button>
+                        <button onClick={() => { setCommetsShow(false) }}>Kapat</button>
                     </div>
                 </Modal>
             }
@@ -94,7 +130,7 @@ export const TweetActions = (props) => {
                     <div>
                         <Input name='updatedvalue' id='updatedvalue' value={updatedValue} onChange={(e) => { setUpdatedValue(e.target.value) }} />
                         <Button onClick={() => { onTweetUpdate(tweet.id, updatedValue); setUpdateShow(false); }}>Kaydet</Button>
-                        <button onClick={() => { setUpdateShow(false) }}>close</button>
+                        <button onClick={() => { setUpdateShow(false) }}>Kapat</button>
                     </div>
                 </Modal>
             }

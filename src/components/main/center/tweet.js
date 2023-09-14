@@ -7,7 +7,7 @@ import { TweetActions } from './tweet-actions';
 
 const Tweet = (props) => {
     const { token, user } = useTwitterContext();
-    const { tweet, onDeleteTweet, onTweetUpdate } = props;
+    const { tweet, tweets, setTweets } = props;
     const [commentCount, setCommentCount] = useState(tweet?.commentCount)
     const [likeCount, setLikeCount] = useState(tweet?.likeCount)
     const [retweetCount, setRetweetCount] = useState(tweet?.retweetCount)
@@ -74,7 +74,7 @@ const Tweet = (props) => {
                     </div>
                 </div>
             </div>
-            <TweetActions tweet={tweet} onDeleteTweet={onDeleteTweet} onTweetUpdate={onTweetUpdate} setCommentCount={setCommentCount} commentCount={commentCount} setCommetsShow={setCommetsShow} commentsShow={commentsShow} />
+            <TweetActions tweet={tweet} tweets={tweets} setTweets={setTweets} setCommentCount={setCommentCount} commentCount={commentCount} setCommetsShow={setCommetsShow} commentsShow={commentsShow} />
         </div>
     )
 }
