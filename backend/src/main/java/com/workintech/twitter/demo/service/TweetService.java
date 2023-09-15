@@ -14,7 +14,7 @@ public interface TweetService {
     Optional<Tweet> getById(int id);
     TweetResponse newTweet(TweetRequest tweet);
     TweetResponse update(int id, TweetRequest tweet);
-    TweetResponse delete(int id);
+    TweetResponse delete(int id, int userId);
     TweetResponse like(int id, int userId);
     TweetResponse disLike(int id, int userId);
     TweetResponse retweet(int id, int userId);

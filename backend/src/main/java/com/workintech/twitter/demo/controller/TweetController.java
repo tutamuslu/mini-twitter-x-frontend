@@ -53,7 +53,7 @@ public class TweetController {
 
     @PutMapping("/{id}")
     public TweetResponse update(@PathVariable int id, @RequestBody TweetRequest tweetRequest){
-        TweetResponse validate = TweetValidation.controlSave(tweetRequest);
+        TweetResponse validate = TweetValidation.controlId(tweetRequest.getUserId());
         if(validate != null){
             return validate;
         }
@@ -63,13 +63,13 @@ public class TweetController {
         return tweetResponse;
     }
 
-    @DeleteMapping("/{id}")
-    public TweetResponse delete(@PathVariable int id){
+    @DeleteMapping("/{id}/{userId}")
+    public TweetResponse delete(@PathVariable int id, @PathVariable int userId){
         TweetResponse idValidation = TweetValidation.controlId(id);
         if(idValidation != null){
             return idValidation;
         }
-        TweetResponse tweetResponse = tweetService.delete(id);
+        TweetResponse tweetResponse = tweetService.delete(id, userId);
         return tweetResponse;
     }
 

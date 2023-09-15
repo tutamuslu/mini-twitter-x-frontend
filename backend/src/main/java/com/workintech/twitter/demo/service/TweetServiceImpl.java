@@ -62,6 +62,13 @@ public class TweetServiceImpl implements TweetService{
     public TweetResponse update(int id, TweetRequest tweetRequest) {
         Optional<Tweet> tweet1 = tweetRepository.findById(id);
         if(tweet1.isPresent()){
+            Optional<Member> member = memberRepository.findById(tweetRequest.getUserId());
+            if(!member.isPresent()){
+                return new TweetResponse(null, false, "Kullanıcı Bulunamadı!");
+            }
+            if(tweet1.get().getUserId().getId() != tweetRequest.getUserId()){
+                return new TweetResponse(null, false, "Size ait olmayan tweeti güncelleyemezsiniz!!");
+            }
             tweet1.get().setContent(tweetRequest.getContent());
             Tweet tweet2 = tweetRepository.save(tweet1.get());
             return new TweetResponse(tweet2, true, "");
@@ -73,9 +80,16 @@ public class TweetServiceImpl implements TweetService{
     }
 
     @Override
-    public TweetResponse delete(int id) {
+    public TweetResponse delete(int id, int userId) {
         Optional<Tweet> tweet = tweetRepository.findById(id);
         if(tweet.isPresent()){
+            Optional<Member> member = memberRepository.findById(userId);
+            if(!member.isPresent()){
+                return new TweetResponse(null, false, "Kullanıcı Bulunamadı!");
+            }
+            if(tweet.get().getUserId().getId() != userId){
+                return new TweetResponse(null, false, "Size ait olmayan tweeti silemezsiniz!!");
+            }
             // likeları sil
             List<Like> likes = likeRepository.selectByTweetId(tweet.get());
             likeRepository.deleteAll(likes);
