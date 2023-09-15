@@ -49,7 +49,7 @@ export const TweetActions = (props) => {
     }
 
     const onDeleteTweet = (id) => {
-        axios.delete('http://localhost:9000/tweet/' + id, { headers: { Authorization: "Bearer " + token } })
+        axios.delete('http://localhost:9000/tweet/' + id + "/" + user?.id, { headers: { Authorization: "Bearer " + token } })
           .then((response) => {
             if (response.data.success) {
               const newTweets = tweets?.filter(x => x.id !== id);
