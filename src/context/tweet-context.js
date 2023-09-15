@@ -4,7 +4,6 @@ import { useUser } from '../hooks/useUser';
 
 const TwitterContext = createContext();
 
-// Context sağlayıcı (provider) bileşeni oluştur
 export function TwitterContextProvider({ children }) {
   const [token, setToken] = useToken(-1);
   const [user, setUser] = useUser({
@@ -30,7 +29,6 @@ export function TwitterContextProvider({ children }) {
   );
 }
 
-// Yardımcı bir özel hook oluştur
 export function useTwitterContext() {
   const context = useContext(TwitterContext);
   if (!context) {
